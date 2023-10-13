@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <unistd.h>
+
+void    ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+int     main(int argc, char **argv)
+{
+        int     i;
+
+        i = 1;
+        while(i < argc)
+        {
+                while(*argv[i] != '\0')
+                {
+                        ft_putchar(*argv[i]);
+                        argv[i]++;
+                }
+                i++;
+                ft_putchar('\n');
+        }
+        return (0);
+}
+
+compilar e após o ./a.out inserir os argumentos

@@ -1,0 +1,62 @@
+diretorio includes
+
+______
+
+diretorio srcs
+
+arquivos touch com o nome das cinco funções (.c e .o)
+
+_____
+
+main .c
+
+
+inclui a putchar como exemplo
+
+____
+
+
+Makefile
+
+
+FILES = $(addprefix srcs/,  ft_putchar.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_swap.c) // adicionar o prefixo da pasta de origem na frente de cada arquivo
+
+#FILES_O = ft_putchar.o ft_putstr.o ft_strcmp.o ft_strlen.o ft_swap.o
+
+FILES_O = $(FILES:%.c=%.o) // variavel: arquivo padrao%.c = substituição pelo arquivo %.o
+
+
+all: libft.a
+
+
+fclean: clean // limpar tudo forçar
+	rm -f libft.a
+
+clean: // limpar
+	rm -f $(FILES_O)
+
+re: fclean libft.a // refazer
+
+
+libft.a: $(FILES_O) // compilar
+	gcc main.c $(FILES_O) -o $@
+#       gcc -c $(addprefix srcs/, $(FILES))	
+
+
+%.o: %.c
+	gcc -c $< -o $@ -I includes // transformar os aquivos padrao .c em .o e incluir o diretorio includes, onde contem os headers
+
+
+
+#	ranlib $@
+
+
+
+_____
+
+
+libft.a
+
+
+
+que e criada com mv ou gcc -o depois de compilar a primeira vez
